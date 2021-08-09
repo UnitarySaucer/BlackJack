@@ -17,3 +17,5 @@ You can check the progress on the game by clicking here: [Trello](https://trello
 ***
 ## Credits
 *Credits will be added here as the game is being created.*
+
+**Game Name:** Matthew Garcia (No socials)
