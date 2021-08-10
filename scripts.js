@@ -24,3 +24,12 @@ function createDeck() {
   }
   return deck
 }
+
+function shuffle(newDeck) {
+  for (let i = 0; i < newDeck.length; i++) {
+    let firstCard = newDeck[i]
+    let randomNum = Math.floor(Math.random() * 52)
+    newDeck[i] = newDeck[randomNum]
+    newDeck[randomNum] = firstCard
+  }
+}
