@@ -1,3 +1,4 @@
+let deck = []
 function createDeck() {
   let cardRanks = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
   let cardValue = [
@@ -15,7 +16,6 @@ function createDeck() {
     'King',
     'Ace'
   ]
-  let deck = []
 
   for (let i = 0; i < cardRanks.length; i++) {
     for (let v = 0; v < cardValue.length; v++) {
@@ -33,3 +33,11 @@ function shuffle(newDeck) {
     newDeck[randomNum] = firstCard
   }
 }
+
+const button = document.querySelector('button')
+const card = document.getElementById('playerC1')
+
+button.addEventListener('click', () => {
+  card.classList.remove('cardback')
+  card.classList.add('dA')
+})
