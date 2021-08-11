@@ -1,0 +1,3 @@
+[submodule "cards/card-deck"]
+	path = cards/card-deck
+	url = git@github.com:mlackey9601/card-deck.git
