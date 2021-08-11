@@ -38,6 +38,8 @@ _Credits will be added here as the game is being created._
 
 **Game Name:** Matthew G. (No socials)
 
+**Background Image:** [istockphoto](https://www.istockphoto.com/)
+
 **Creating Deck:** [mrGcoding](https://www.youtube.com/watch?v=LxXWTXOny3A)
 
 **Cards SVG:** [mlackey9601](https://github.com/mlackey9601/card-deck)
