@@ -110,8 +110,12 @@ function checkWin() {
   let dealerCardSum = dealerCards.reduce((a, b) => {
     return a + b
   }, 0)
-  if (playerCardSum > 21) {
-    alert('Whoah you lost')
+  if (dealerCardSum > 21) {
+    alert('You Won!')
+  } else if (playerCardSum < dealerCardSum) {
+    alert('You Lost! :(')
+  } else if (playerCardSum > dealerCardSum) {
+    alert('You Won!')
   }
 }
 
@@ -135,6 +139,8 @@ function dealerC1Clicked() {
   let cardValueSum = cardValue1 + cardValue2
   playerValue.textContent = `Value: ${cardValueSum.toString()}`
   dealerValue.textContent = `Value: ${dealerValue1.toString()}`
+  hitButton.style.visibility = 'visible'
+  standButton.style.visibility = 'visible'
 }
 
 function dealerC2Clicked() {
@@ -157,6 +163,8 @@ function dealerC2Clicked() {
   let cardValueSum = cardValue1 + cardValue2
   playerValue.textContent = `Value: ${cardValueSum.toString()}`
   dealerValue.textContent = `Value: ${dealerValue1.toString()}`
+  hitButton.style.visibility = 'visible'
+  standButton.style.visibility = 'visible'
 }
 
 function checkValues(card) {
@@ -234,8 +242,6 @@ startButton.addEventListener('click', () => {
   startCards(deck1)
   playerC1.classList.remove('card-back')
   startButton.style.visibility = 'hidden'
-  hitButton.style.visibility = 'visible'
-  standButton.style.visibility = 'visible'
   dealerC1.style.cursor = 'pointer'
   dealerC2.style.cursor = 'pointer'
   let cardValue = checkValues(playerC1)
@@ -265,15 +271,5 @@ standButton.addEventListener('click', () => {
   if (cardsSum < 17) {
     dealerDeal()
   }
-  // if (cardsSum < 17) {
-  //   let newCard = deck.splice(0, 1)
-  //   let newDiv = document.createElement('div')
-  //   newDiv.classList.add('card', `${newCard[0]}`)
-  //   dealerSide.appendChild(newDiv)
-  //   dealerCards.push(checkValues(newDiv))
-  //   let cardsSum = dealerCards.reduce((a, b) => {
-  //     return a + b
-  //   }, 0)
-  //   dealerValue.textContent = `Value: ${cardsSum.toString()}`
-  // }
+  checkWin()
 })
