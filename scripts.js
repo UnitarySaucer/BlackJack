@@ -75,6 +75,28 @@ function dealCards(deck) {
   playerSide.appendChild(newDiv)
 }
 
+function dealerC1Clicked() {
+  let oldClass = dealerC1.classList[2]
+  let newClass = playerC2.classList[2]
+  playerC2.classList.add(oldClass)
+  dealerC1.classList.add(newClass)
+  playerC2.classList.remove(newClass)
+  dealerC1.classList.remove(oldClass)
+  playerC2.classList.remove('card-back')
+  dealerC2.removeEventListener('click', dealerC2Clicked)
+}
+
+function dealerC2Clicked() {
+  let oldClass = dealerC2.classList[2]
+  let newClass = playerC2.classList[2]
+  playerC2.classList.add(oldClass)
+  dealerC2.classList.add(newClass)
+  playerC2.classList.remove(newClass)
+  dealerC2.classList.remove(oldClass)
+  playerC2.classList.remove('card-back')
+  dealerC1.removeEventListener('click', dealerC1Clicked)
+}
+
 ///////////////////////////////////////////////////////
 // Event Listeners
 
@@ -89,22 +111,10 @@ hitButton.addEventListener('click', () => {
   dealCards(deck)
 })
 
-dealerC1.addEventListener('click', () => {
-  let oldClass = dealerC1.classList[2]
-  let newClass = playerC2.classList[2]
-  playerC2.classList.add(oldClass)
-  dealerC1.classList.add(newClass)
-  playerC2.classList.remove(newClass)
-  dealerC1.classList.remove(oldClass)
-  playerC2.classList.remove('card-back')
+dealerC1.addEventListener('click', dealerC1Clicked, {
+  once: true
 })
 
-dealerC2.addEventListener('click', () => {
-  let oldClass = dealerC2.classList[2]
-  let newClass = playerC2.classList[2]
-  playerC2.classList.add(oldClass)
-  dealerC2.classList.add(newClass)
-  playerC2.classList.remove(newClass)
-  dealerC2.classList.remove(oldClass)
-  playerC2.classList.remove('card-back')
+dealerC2.addEventListener('click', dealerC2Clicked, {
+  once: true
 })
