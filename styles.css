@@ -264,3 +264,7 @@ div {
 #hit {
   visibility: hidden;
 }
+
+#stand {
+  visibility: hidden;
+}
