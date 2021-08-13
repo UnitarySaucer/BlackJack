@@ -30,6 +30,7 @@ div {
 #dealer-side {
   border: solid red 2px;
   display: flex;
+  flex-wrap: wrap;
 }
 
 #player-side {
