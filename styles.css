@@ -269,3 +269,7 @@ div {
 #stand {
   visibility: hidden;
 }
+
+#play-again {
+  visibility: hidden;
+}

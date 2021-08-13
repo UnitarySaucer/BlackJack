@@ -29,6 +29,7 @@ const standButton = document.getElementById('stand')
 const playerValue = document.getElementById('player-value')
 const dealerValue = document.getElementById('dealer-value')
 const buttonText = document.getElementById('button-text-panel')
+const playAgain = document.getElementById('play-again')
 
 let deck = []
 let newCardsValues = []
@@ -113,10 +114,13 @@ function checkWin() {
   }, 0)
   if (dealerCardSum > 21) {
     alert('You Won!')
+    playAgain.style.visibility = 'visible'
   } else if (playerCardSum < dealerCardSum) {
     alert('You Lost! :(')
+    playAgain.style.visibility = 'visible'
   } else if (playerCardSum > dealerCardSum) {
     alert('You Won!')
+    playAgain.style.visibility = 'visible'
   }
 }
 
@@ -275,4 +279,8 @@ standButton.addEventListener('click', () => {
     dealerDeal()
   }
   checkWin()
+})
+
+playAgain.addEventListener('click', () => {
+  window.location.reload()
 })
