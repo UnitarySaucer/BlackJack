@@ -83,11 +83,31 @@ function dealCards(deck) {
     return a + b
   }, 0)
   playerValue.textContent = `Value: ${cardsSum.toString()}`
-  checkWin()
+  if (cardsSum > 21) {
+    alert('Whoah you lost')
+  }
+}
+
+function dealerDeal() {
+  let newCard = deck.splice(0, 1)
+  let newDiv = document.createElement('div')
+  newDiv.classList.add('card', `${newCard[0]}`)
+  dealerSide.appendChild(newDiv)
+  dealerCards.push(checkValues(newDiv))
+  let cardsSum = dealerCards.reduce((a, b) => {
+    return a + b
+  }, 0)
+  dealerValue.textContent = `Value: ${cardsSum.toString()}`
+  if (cardsSum < 17) {
+    dealerDeal()
+  }
 }
 
 function checkWin() {
   let playerCardSum = newCardsValues.reduce((a, b) => {
+    return a + b
+  }, 0)
+  let dealerCardSum = dealerCards.reduce((a, b) => {
     return a + b
   }, 0)
   if (playerCardSum > 21) {
@@ -242,4 +262,18 @@ standButton.addEventListener('click', () => {
     return a + b
   }, 0)
   dealerValue.textContent = `Value: ${cardsSum}`
+  if (cardsSum < 17) {
+    dealerDeal()
+  }
+  // if (cardsSum < 17) {
+  //   let newCard = deck.splice(0, 1)
+  //   let newDiv = document.createElement('div')
+  //   newDiv.classList.add('card', `${newCard[0]}`)
+  //   dealerSide.appendChild(newDiv)
+  //   dealerCards.push(checkValues(newDiv))
+  //   let cardsSum = dealerCards.reduce((a, b) => {
+  //     return a + b
+  //   }, 0)
+  //   dealerValue.textContent = `Value: ${cardsSum.toString()}`
+  // }
 })
