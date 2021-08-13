@@ -25,8 +25,12 @@ const dealerC1 = document.getElementById('dealerC1')
 const dealerC2 = document.getElementById('dealerC2')
 const startButton = document.getElementById('start')
 const hitButton = document.getElementById('hit')
+const standButton = document.getElementById('stand')
+const playerValue = document.getElementById('player-value')
+const dealerValue = document.getElementById('dealer-value')
 
 let deck = []
+let newCardsValues = []
 
 ///////////////////////////////////////////////////////
 // Functions
@@ -73,6 +77,11 @@ function dealCards(deck) {
   let newDiv = document.createElement('div')
   newDiv.classList.add('card', `${newCard[0]}`)
   playerSide.appendChild(newDiv)
+  newCardsValues.push(checkValues(newDiv))
+  let newCardsSum = newCardsValues.reduce((a, b) => {
+    return a + b
+  }, 0)
+  playerValue.textContent = `Player Value: ${newCardsSum.toString()}`
 }
 
 function dealerC1Clicked() {
@@ -83,7 +92,17 @@ function dealerC1Clicked() {
   playerC2.classList.remove(newClass)
   dealerC1.classList.remove(oldClass)
   playerC2.classList.remove('card-back')
+  dealerC1.classList.remove('card-back')
+  dealerC1.style.cursor = 'default'
+  dealerC2.style.cursor = 'default'
   dealerC2.removeEventListener('click', dealerC2Clicked)
+  let cardValue1 = checkValues(playerC1)
+  let cardValue2 = checkValues(playerC2)
+  newCardsValues.push(cardValue2)
+  let dealerValue1 = checkValues(dealerC1)
+  let cardValueSum = cardValue1 + cardValue2
+  playerValue.textContent = `Player Value: ${cardValueSum.toString()}`
+  dealerValue.textContent = `Dealer Value: ${dealerValue1.toString()}`
 }
 
 function dealerC2Clicked() {
@@ -94,9 +113,87 @@ function dealerC2Clicked() {
   playerC2.classList.remove(newClass)
   dealerC2.classList.remove(oldClass)
   playerC2.classList.remove('card-back')
+  dealerC1.classList.remove('card-back')
+  dealerC1.style.cursor = 'default'
+  dealerC2.style.cursor = 'default'
   dealerC1.removeEventListener('click', dealerC1Clicked)
+  let cardValue1 = checkValues(playerC1)
+  let cardValue2 = checkValues(playerC2)
+  newCardsValues.push(cardValue2)
+  let dealerValue1 = checkValues(dealerC1)
+  let cardValueSum = cardValue1 + cardValue2
+  playerValue.textContent = `Player Value: ${cardValueSum.toString()}`
+  dealerValue.textContent = `Dealer Value: ${dealerValue1.toString()}`
 }
 
+function checkValues(card) {
+  if (
+    card.classList.contains('AceC') == true ||
+    card.classList.contains('AceS') == true ||
+    card.classList.contains('AceH') == true ||
+    card.classList.contains('AceD') == true
+  ) {
+    return 1
+  } else if (
+    card.classList.contains('TwoC') == true ||
+    card.classList.contains('TwoS') == true ||
+    card.classList.contains('TwoH') == true ||
+    card.classList.contains('TwoD') == true
+  ) {
+    return 2
+  } else if (
+    card.classList.contains('ThreeC') == true ||
+    card.classList.contains('ThreeS') == true ||
+    card.classList.contains('ThreeH') == true ||
+    card.classList.contains('ThreeD') == true
+  ) {
+    return 3
+  } else if (
+    card.classList.contains('FourC') == true ||
+    card.classList.contains('FourS') == true ||
+    card.classList.contains('FourH') == true ||
+    card.classList.contains('FourD') == true
+  ) {
+    return 4
+  } else if (
+    card.classList.contains('FiveC') == true ||
+    card.classList.contains('FiveS') == true ||
+    card.classList.contains('FiveH') == true ||
+    card.classList.contains('FiveD') == true
+  ) {
+    return 5
+  } else if (
+    card.classList.contains('SixC') == true ||
+    card.classList.contains('SixS') == true ||
+    card.classList.contains('SixH') == true ||
+    card.classList.contains('SixD') == true
+  ) {
+    return 6
+  } else if (
+    card.classList.contains('SevenC') == true ||
+    card.classList.contains('SevenS') == true ||
+    card.classList.contains('SevenH') == true ||
+    card.classList.contains('SevenD') == true
+  ) {
+    return 7
+  } else if (
+    card.classList.contains('EightC') == true ||
+    card.classList.contains('EightS') == true ||
+    card.classList.contains('EightH') == true ||
+    card.classList.contains('EightD') == true
+  ) {
+    return 8
+  } else if (
+    card.classList.contains('NineC') == true ||
+    card.classList.contains('NineS') == true ||
+    card.classList.contains('NineH') == true ||
+    card.classList.contains('NineD') == true
+  ) {
+    return 9
+  } else {
+    return 10
+  }
+}
 ///////////////////////////////////////////////////////
 // Event Listeners
 
@@ -105,16 +202,25 @@ startButton.addEventListener('click', () => {
   playerC1.classList.remove('card-back')
   startButton.style.visibility = 'hidden'
   hitButton.style.visibility = 'visible'
+  standButton.style.visibility = 'visible'
+  dealerC1.style.cursor = 'pointer'
+  dealerC2.style.cursor = 'pointer'
+  let cardValue = checkValues(playerC1)
+  newCardsValues.push(cardValue)
+  playerValue.textContent = `Player Value: ${cardValue.toString()}`
+  dealerC1.addEventListener('click', dealerC1Clicked, {
+    once: true
+  })
+
+  dealerC2.addEventListener('click', dealerC2Clicked, {
+    once: true
+  })
 })
 
 hitButton.addEventListener('click', () => {
   dealCards(deck)
 })
 
-dealerC1.addEventListener('click', dealerC1Clicked, {
-  once: true
-})
-
-dealerC2.addEventListener('click', dealerC2Clicked, {
-  once: true
+standButton.addEventListener('click', () => {
+  console.log(newCardsValues)
 })
