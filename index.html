@@ -5,14 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script defer src="./scripts.js"></script>
-    <title>Document</title>
+    <title>Blind Eye Blackjack</title>
   </head>
   <body>
     <div id="container">
       <div id="dealer-side">
-        <h1>Dealer</h1>
+        <h1 id="dealer-value">Dealer</h1>
         <div id="dealerC1" class="card card-back"></div>
         <div id="dealerC2" class="card card-back"></div>
       </div>
@@ -20,13 +19,14 @@
         <div class="card card-back"></div>
       </div>
       <div id="player-side">
-        <h1>Player</h1>
+        <h1 id="player-value">Player</h1>
         <div id="playerC1" class="card card-back"></div>
         <div id="playerC2" class="card card-back"></div>
       </div>
       <div id="button-panel">
         <button id="start">Start</button>
         <button id="hit">Hit</button>
+        <button id="stand">Stand</button>
       </div>
     </div>
   </body>
