@@ -43,3 +43,5 @@ _Credits will be added here as the game is being created._
 **Creating Deck:** [mrGcoding](https://www.youtube.com/watch?v=LxXWTXOny3A)
 
 **Cards SVG:** [mlackey9601](https://github.com/mlackey9601/card-deck)
+
+**Removing Event Listener:** [Amit Merchant](https://www.amitmerchant.com/remove-event-listener-once-invoked-javascript/)
