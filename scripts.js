@@ -31,6 +31,7 @@ const dealerValue = document.getElementById('dealer-value')
 
 let deck = []
 let newCardsValues = []
+let dealerCards = []
 
 ///////////////////////////////////////////////////////
 // Functions
@@ -78,10 +79,20 @@ function dealCards(deck) {
   newDiv.classList.add('card', `${newCard[0]}`)
   playerSide.appendChild(newDiv)
   newCardsValues.push(checkValues(newDiv))
-  let newCardsSum = newCardsValues.reduce((a, b) => {
+  let cardsSum = newCardsValues.reduce((a, b) => {
     return a + b
   }, 0)
-  playerValue.textContent = `Player Value: ${newCardsSum.toString()}`
+  playerValue.textContent = `Value: ${cardsSum.toString()}`
+  checkWin()
+}
+
+function checkWin() {
+  let playerCardSum = newCardsValues.reduce((a, b) => {
+    return a + b
+  }, 0)
+  if (playerCardSum > 21) {
+    alert('Whoah you lost')
+  }
 }
 
 function dealerC1Clicked() {
@@ -99,10 +110,11 @@ function dealerC1Clicked() {
   let cardValue1 = checkValues(playerC1)
   let cardValue2 = checkValues(playerC2)
   newCardsValues.push(cardValue2)
+  dealerCards.push(checkValues(dealerC1))
   let dealerValue1 = checkValues(dealerC1)
   let cardValueSum = cardValue1 + cardValue2
-  playerValue.textContent = `Player Value: ${cardValueSum.toString()}`
-  dealerValue.textContent = `Dealer Value: ${dealerValue1.toString()}`
+  playerValue.textContent = `Value: ${cardValueSum.toString()}`
+  dealerValue.textContent = `Value: ${dealerValue1.toString()}`
 }
 
 function dealerC2Clicked() {
@@ -120,10 +132,11 @@ function dealerC2Clicked() {
   let cardValue1 = checkValues(playerC1)
   let cardValue2 = checkValues(playerC2)
   newCardsValues.push(cardValue2)
+  dealerCards.push(checkValues(dealerC1))
   let dealerValue1 = checkValues(dealerC1)
   let cardValueSum = cardValue1 + cardValue2
-  playerValue.textContent = `Player Value: ${cardValueSum.toString()}`
-  dealerValue.textContent = `Dealer Value: ${dealerValue1.toString()}`
+  playerValue.textContent = `Value: ${cardValueSum.toString()}`
+  dealerValue.textContent = `Value: ${dealerValue1.toString()}`
 }
 
 function checkValues(card) {
@@ -207,7 +220,7 @@ startButton.addEventListener('click', () => {
   dealerC2.style.cursor = 'pointer'
   let cardValue = checkValues(playerC1)
   newCardsValues.push(cardValue)
-  playerValue.textContent = `Player Value: ${cardValue.toString()}`
+  playerValue.textContent = `Value: ${cardValue.toString()}`
   dealerC1.addEventListener('click', dealerC1Clicked, {
     once: true
   })
@@ -222,5 +235,11 @@ hitButton.addEventListener('click', () => {
 })
 
 standButton.addEventListener('click', () => {
-  console.log(newCardsValues)
+  hitButton.style.visibility = 'hidden'
+  dealerC2.classList.remove('card-back')
+  dealerCards.push(checkValues(dealerC2))
+  let cardsSum = dealerCards.reduce((a, b) => {
+    return a + b
+  }, 0)
+  dealerValue.textContent = `Value: ${cardsSum}`
 })
