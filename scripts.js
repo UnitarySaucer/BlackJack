@@ -28,6 +28,7 @@ const hitButton = document.getElementById('hit')
 const standButton = document.getElementById('stand')
 const playerValue = document.getElementById('player-value')
 const dealerValue = document.getElementById('dealer-value')
+const buttonText = document.getElementById('button-text-panel')
 
 let deck = []
 let newCardsValues = []
@@ -247,6 +248,8 @@ startButton.addEventListener('click', () => {
   let cardValue = checkValues(playerC1)
   newCardsValues.push(cardValue)
   playerValue.textContent = `Value: ${cardValue.toString()}`
+  buttonText.textContent =
+    'Click on a dealer card to switch with your face down card'
   dealerC1.addEventListener('click', dealerC1Clicked, {
     once: true
   })
