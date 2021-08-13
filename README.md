@@ -16,7 +16,7 @@ Blackjack with a **_twist_** at the start.
 
 ## Technologies Used
 
-HTML, CSS, and JavaScript will be used to create the game.
+HTML, CSS, and JavaScript.
 
 ---
 
